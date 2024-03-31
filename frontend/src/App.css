@@ -1,0 +1,53 @@
+
+.homepage{
+  display: flex;
+  align-items: center;
+  background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
+  color: white;
+  height: calc(100vh - 50px);
+  justify-content:space-around;
+  text-shadow: 2px 2px 5px #34302f;
+}
+.home-center{
+  text-align: center;
+  margin-top: -10%;
+}
+
+.companies, .companyDetails, .allJobs, .login, .signup{
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+form {
+  width: 80%; 
+  max-width: 600px; 
+  padding: 10px; 
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8); /* Example background color */
+}
+
+.navbar{
+  width:100%;
+}
+
+.nav-link{
+  padding: 10px;
+}
+.inactive {
+  color:darkgray;
+  text-decoration: none;
+}
+
+.active {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.button{
+  margin-left: 5px;
+}

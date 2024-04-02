@@ -5,7 +5,7 @@ const Company = ({ handle, description, name, handleCompanyClick }) => {
         <div className="company d-flex justify-content-center align-items-center" onClick={() => handleCompanyClick(handle)}>
             <Row>
                 <Col sm="8">
-                    <Card style={{ width: '65rem' }} body>
+                    <Card style={{ width: '65rem' }} className="cards" body>
                         <CardTitle tag="h5">
                             {name}
                         </CardTitle>

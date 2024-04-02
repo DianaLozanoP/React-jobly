@@ -4,7 +4,7 @@ import JoblyApi from "./api";
 import Company from "./Company";
 import SearchForm from "./Hooks/SearchForm";
 
-const Companies = () => {
+const Companies = ({ token }) => {
     const navigate = useNavigate();
     //setting the state for companies
     const [companies, setCompanies] = useState([]);
@@ -16,6 +16,14 @@ const Companies = () => {
     const handleCompanyClick = (handle) => {
         navigate(`/companies/${handle}`)
     }
+
+    useEffect(() => {
+        if (!token) {
+            // Navigate to home page if authToken is not available
+            navigate('/');
+        }
+    }, [token, navigate]);
+
     //get data from API
     useEffect(() => {
         const getCompanies = async () => {
@@ -25,17 +33,23 @@ const Companies = () => {
         getCompanies();
     }, [])
     return (
-        <div className="companies">
-            <SearchForm searchTerm={searchCompany} />
-            {companies.map((c) => (
-                <Company
-                    key={c.handle}
-                    handleCompanyClick={handleCompanyClick}
-                    handle={c.handle}
-                    description={c.description}
-                    name={c.name} />
-            ))}
+        <div>
+            <div className="companies pt-5">
+                <SearchForm searchTerm={searchCompany} />
+                <div className="companiescards">
+                    {companies.map((c) => (
+                        <Company
+                            key={c.handle}
+                            handleCompanyClick={handleCompanyClick}
+                            handle={c.handle}
+                            description={c.description}
+                            name={c.name} />
+                    ))}
+                </div>
+            </div>
+
         </div>
+
 
     )
 }

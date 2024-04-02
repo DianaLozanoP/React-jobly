@@ -12,28 +12,25 @@ import SignUp from './SignUp';
 import Profile from './Profile';
 import useLocalStorage from './Hooks/useLocalStorage';
 import JoblyApi from './api';
-import TokenProvider, { useToken } from './TokenProvider';
 
 function App() {
 
-  const [currentUser, setCurrentUser] = useState({ username: "", firstName: "", lastName: "" })
+  const [currentUser, setCurrentUser] = useState({ username: "", firstName: "", lastName: "", email: "", jobs: [] })
   const [token, setToken] = useLocalStorage('token', '');
 
   const navigate = useNavigate();
 
-  const { updateToken } = useToken()
-
-  useEffect(() => {
-    updateToken(token)
-  }, [token, updateToken])
-
   const addUser = async ({ user, token }) => {
-    setToken(token);
+    if (token) {
+      setToken(token);
+    }
     if (user.firstName) {
-      setCurrentUser({ username: user.username, firstName: user.firstName, lastName: user.lastName })
+      setCurrentUser({ username: user.username, firstName: user.firstName, lastName: user.lastName, email: user.email })
     } else {
       let response = await JoblyApi.getUser(user.username)
-      setCurrentUser({ username: response.user.username, firstName: response.firstName, lastName: response.lastName })
+      console.log("add user", response)
+      const { username, firstName, lastName, email, applications } = response.user;
+      setCurrentUser({ username, firstName, lastName, email, applications });
     }
 
   }
@@ -44,21 +41,19 @@ function App() {
   }
 
   return (
-    <TokenProvider>
-      <div className="App">
-        <NavBar currentUser={currentUser} logout={logout} />
-        <Routes>
-          <Route path="/" element={<Home currentUser={currentUser} />} />
-          <Route path="/companies" element={<Companies />} />
-          <Route path="/companies/:handle" element={<CompanyJobs />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/login" element={<LogIn addUser={addUser} />} />
-          <Route path="/signup" element={<SignUp addUser={addUser} />} />
-          <Route path="/profile" element={<Profile currentUser={currentUser} />} />
-        </Routes>
+    <div className="App">
+      <NavBar currentUser={currentUser} logout={logout} />
+      <Routes>
+        <Route path="/" element={<Home currentUser={currentUser} />} />
+        <Route path="/companies" element={<Companies token={token} />} />
+        <Route path="/companies/:handle" element={<CompanyJobs currentUser={currentUser} token={token} />} />
+        <Route path="/jobs" element={<Jobs currentUser={currentUser} token={token} />} />
+        <Route path="/login" element={<LogIn addUser={addUser} />} />
+        <Route path="/signup" element={<SignUp addUser={addUser} />} />
+        <Route path="/profile" element={<Profile currentUser={currentUser} addUser={addUser} token={token} />} />
+      </Routes>
 
-      </div>
-    </TokenProvider>
+    </div>
 
   );
 }

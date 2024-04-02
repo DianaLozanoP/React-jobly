@@ -3,8 +3,10 @@
   display: flex;
   align-items: center;
   background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
+  background-size: cover;
+  background-position: center;
   color: white;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
   justify-content:space-around;
   text-shadow: 2px 2px 5px #34302f;
 }
@@ -13,23 +15,44 @@
   margin-top: -10%;
 }
 
-.companies, .companyDetails, .allJobs, .login, .signup{
+.companies, .companyDetails, .allJobs, .login, .signup, .profile{
   display: flex;
   flex-direction: column; /* Stack items vertically */
   background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
-  min-height: 100vh;
   align-items: center;
   justify-content: center;
-  overflow-y: auto;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-repeat: repeat;
 }
-form {
-  width: 80%; 
-  max-width: 600px; 
-  padding: 10px; 
+.searchform{
+  position: absolute;
+  top: 100px; /* Adjust the top position as needed */
+  width: 80%;
+  max-width: 600px;
+  padding: 10px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.8); /* Example background color */
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.companyDetails2 {
+  margin-top: -550px;
+  position: absolute;
+  color: white;
+}
+.companyDetails3 {
+  margin-top: -480px;
+  position: absolute;
+  color: white;
 }
 
+.companiescards, .jobcards{
+  position: absolute;
+  top: 200px;
+}
+.cards {
+  margin-bottom: 1rem;
+}
 .navbar{
   width:100%;
 }
@@ -50,4 +73,8 @@ form {
 
 .button{
   margin-left: 5px;
+}
+
+label{
+  font-weight: 700;
 }

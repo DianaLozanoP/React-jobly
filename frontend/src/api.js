@@ -99,6 +99,31 @@ class JoblyApi {
             throw err;
         }
     }
+    //Patch username info
+    static async patchUser(data) {
+        let data2 = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email
+        }
+        try {
+            const res = await this.request(`users/${data.username}`, data2, "patch")
+            return res
+        } catch (err) {
+            console.error("Error registering user:", err);
+            throw err;
+        }
+    }
+    //Apply for a job
+    static async applyJob(username, id) {
+        try {
+            const res = await this.request(`users/${username}/jobs/${id}`, {}, "post")
+            return res;
+        } catch (err) {
+            console.error("Error registering user:", err);
+            throw err;
+        }
+    }
 
 }
 

@@ -18,7 +18,7 @@ const SearchForm = ({ searchTerm }) => {
         setFormData(INITIAL_STATE)
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="searchform">
             <input
                 id="search"
                 type="text"

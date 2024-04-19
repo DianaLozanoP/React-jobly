@@ -67,7 +67,7 @@ class JoblyApi {
     }
     //Add a new user
     static async registerUser(data) {
-        const url = `${BASE_URL}/auth/register`;
+        const url = `${BASE_URL}auth/register`;
         try {
             const res = await axios.post(url, data);
             JoblyApi.token = res.data.token;
@@ -79,7 +79,7 @@ class JoblyApi {
     }
     //Log in user
     static async logInUser(data) {
-        const url = `${BASE_URL}/auth/token`;
+        const url = `${BASE_URL}auth/token`;
         try {
             const res = await axios.post(url, data);
             JoblyApi.token = res.data.token;

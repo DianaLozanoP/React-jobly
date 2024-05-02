@@ -21,10 +21,14 @@
   background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
   align-items: center;
   justify-content: center;
-  background-size: cover;
-  background-position: center;
+}
+.login, .signup, .profile{
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  background-image: url("https://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png");
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  background-repeat: repeat;
 }
 .searchform{
   position: absolute;
@@ -37,17 +41,14 @@
 }
 .companyDetails2 {
   margin-top: -550px;
-  position: absolute;
   color: white;
 }
 .companyDetails3 {
   margin-top: -480px;
-  position: absolute;
   color: white;
 }
 
 .companiescards, .jobcards{
-  position: absolute;
   top: 200px;
 }
 .cards {

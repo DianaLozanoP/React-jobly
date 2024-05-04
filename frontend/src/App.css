@@ -50,6 +50,7 @@
 
 .companiescards, .jobcards{
   top: 200px;
+  margin-top: 20px;
 }
 .cards {
   margin-bottom: 1rem;

@@ -24,13 +24,13 @@ const Jobs = ({ currentUser, token }) => {
         getAllJobs();
     }, [])
 
-    const serachJob = async ({ search }) => {
+    const searchJob = async ({ search }) => {
         let jobsData = await JoblyApi.getJob(search)
         setJobs(jobsData.jobs)
     }
     return (
-        <div className="allJobs">
-            <SearchForm searchTerm={serachJob} />
+        <div className="allJobs pt-5">
+            <SearchForm searchTerm={searchJob} />
             <div className="jobcards">
                 {jobs.length === 0 ?
                     null :

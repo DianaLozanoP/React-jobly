@@ -1,19 +1,22 @@
 import "./App.css";
 import { Link, useNavigate } from "react-router-dom";
-import JoblyApi from "./api"; // Import your JoblyApi helper
+import JoblyApi from "./api";
 
 const Home = ({ currentUser, addUser }) => {
     const navigate = useNavigate();
 
-    // Guest login handler
     const handleGuestLogin = async () => {
         try {
             const guestData = { username: "testuser", password: "password" };
-            const token = await JoblyApi.login(guestData);
-            await addUser({ user: { username: guestData.username }, token });
-            navigate("/companies"); // Optional: redirect straight to companies after guest login
+            const response = await JoblyApi.logInUser(guestData);
+
+            let user = guestData;
+            let token = response.data.token;
+
+            await addUser({ user, token });
+            navigate("/companies");
         } catch (err) {
-            console.error("Guest login failed", err);
+            console.error("Guest login failed:", err);
         }
     };
 

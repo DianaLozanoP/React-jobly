@@ -44,7 +44,7 @@ function App() {
     <div className="App">
       <NavBar currentUser={currentUser} logout={logout} />
       <Routes>
-        <Route path="/" element={<Home currentUser={currentUser} />} />
+        <Route path="/" element={<Home currentUser={currentUser} addUser={addUser} />} />
         <Route path="/companies" element={<Companies token={token} />} />
         <Route path="/companies/:handle" element={<CompanyJobs currentUser={currentUser} token={token} />} />
         <Route path="/jobs" element={<Jobs currentUser={currentUser} token={token} />} />

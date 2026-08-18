@@ -1,9 +1,10 @@
 import { useState } from "react"
 
 const FormLogIn = ({ login }) => {
-    //empty string for the search
+    // empty string for the search
     const INITIAL_STATE = { username: "", password: "" }
     const [formData, setFormData] = useState(INITIAL_STATE)
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(formData => ({
@@ -11,15 +12,23 @@ const FormLogIn = ({ login }) => {
             [name]: value
         }))
     }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         login({ ...formData })
         setFormData(INITIAL_STATE)
     }
-    return (
 
+    // Handles instant guest login
+    const handleGuestLogin = (e) => {
+        e.preventDefault();
+        const guestCredentials = { username: "testuser", password: "password" };
+        login(guestCredentials);
+    }
+
+    return (
         <form onSubmit={handleSubmit}>
-            <div >
+            <div>
                 <label className="form-label">Username</label>
                 <input
                     id="username"
@@ -30,7 +39,7 @@ const FormLogIn = ({ login }) => {
                     className="form-control"
                 />
             </div>
-            <div className="mb-3" >
+            <div className="mb-3">
                 <label className="form-label">Password</label>
                 <input
                     id="password"
@@ -41,8 +50,17 @@ const FormLogIn = ({ login }) => {
                     className="form-control"
                 />
             </div>
-            <button className="btn btn-primary">Submit</button>
 
+            <div className="d-flex gap-2">
+                <button type="submit" className="btn btn-primary">Submit</button>
+                <button
+                    type="button"
+                    onClick={handleGuestLogin}
+                    className="btn btn-outline-secondary"
+                >
+                    Login as Guest
+                </button>
+            </div>
         </form>
     )
 }
